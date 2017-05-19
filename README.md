@@ -418,7 +418,7 @@ resources:
 - name: resource-tutorial
   type: git
   source:
-    uri: https://github.com/starkandwayne/concourse-tutorial.git
+    uri https://github.com/zinkst/concourse-tutorial.git
 ```
 
 The resource name `resource-tutorial` is then used in the build plan for the job:
