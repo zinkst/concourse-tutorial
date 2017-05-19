@@ -1,0 +1,42 @@
+---
+resources:
+- name: resource-web-app
+  type: git
+  source:
+    uri: https://github.com/cloudfoundry-community/simple-go-web-app.git
+
+- name: resource-deploy-web-app
+  type: cf
+  source:
+    api: {{cf-api}}
+    username: {{cf-username}}
+    password: {{cf-password}}
+    organization: {{cf-organization}}
+    space: {{cf-space}}
+    skip_cert_check: true
+
+jobs:
+- name: job-deploy-app-with-manifest-change
+  serial: true
+  plan:
+  - {get: resource-web-app, trigger: true}
+  - task:
+    platform: linux
+
+    image_resource:
+      type: docker-image
+      source: {repository: busybox}
+
+    inputs:
+      - name: resource-web-app
+
+    outputs:
+      - name: cf-manifest
+
+run:
+  path: resource-tutorial/11_task_outputs_to_inputs/create_some_files.sh
+
+  - put: resource-deploy-web-app
+    params:
+      manifest: cf-manifest/manifest.yml
+      path: resource-web-app
