@@ -24,7 +24,7 @@ jobs:
 - name: job-deploy-app-with-manifest-change
   serial: true
   plan:
-  - {get: resource-web-app, trigger: true}
+  - get: resource-web-app
   - get: resource-tutorial
   - task: update-manifest
     file: resource-tutorial/15_deploy_cloudfoundry_app/update-manifest-task.yml
