@@ -5,6 +5,11 @@ resources:
   source:
     uri: https://github.com/cloudfoundry-community/simple-go-web-app.git
 
+- name: resource-tutorial
+  type: git
+  source:
+    uri: {{git-url}}
+
 - name: resource-deploy-web-app
   type: cf
   source:
@@ -20,22 +25,9 @@ jobs:
   serial: true
   plan:
   - {get: resource-web-app, trigger: true}
-  - task:
-    platform: linux
-
-    image_resource:
-      type: docker-image
-      source: {repository: busybox}
-
-    inputs:
-      - name: resource-web-app
-
-    outputs:
-      - name: cf-manifest
-
-    run:
-      path: resource-tutorial/15_deploy_cloud_foundry_app/update-mainfest.sh
-
+  - task: update-manifest
+    file: resource-tutorial/15_deploy_cloudfoundry_app/update-manifest-task.yml
+    
   - put: resource-deploy-web-app
     params:
       manifest: cf-manifest/manifest.yml

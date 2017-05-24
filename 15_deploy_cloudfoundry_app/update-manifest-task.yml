@@ -1,0 +1,13 @@
+---
+platform: linux
+image_resource:
+  type: docker-image
+  source: {repository: busybox}
+inputs:
+  - name: resource-web-app
+  - name: resource-tutorial
+
+outputs:
+  - name: cf-manifest
+run:
+  path: resource-tutorial/15_deploy_cloud_foundry_app/update-manifest.sh
