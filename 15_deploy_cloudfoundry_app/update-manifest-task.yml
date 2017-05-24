@@ -10,4 +10,4 @@ inputs:
 outputs:
   - name: cf-manifest
 run:
-  path: resource-tutorial/15_deploy_cloud_foundry_app/update-manifest.sh
+  path: resource-tutorial/15_deploy_cloudfoundry_app/update-manifest.sh

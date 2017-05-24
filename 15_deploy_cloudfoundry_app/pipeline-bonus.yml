@@ -25,9 +25,10 @@ jobs:
   serial: true
   plan:
   - {get: resource-web-app, trigger: true}
+  - get: resource-tutorial
   - task: update-manifest
     file: resource-tutorial/15_deploy_cloudfoundry_app/update-manifest-task.yml
-    
+
   - put: resource-deploy-web-app
     params:
       manifest: cf-manifest/manifest.yml
