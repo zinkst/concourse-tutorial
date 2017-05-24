@@ -4,8 +4,8 @@ image_resource:
   type: docker-image
   source: {repository: busybox}
 inputs:
-- name: resource-web-app
 - name: resource-tutorial
+#- name: resource-web-app
 
 outputs:
 - name: cf-manifest
