@@ -33,8 +33,8 @@ jobs:
     outputs:
       - name: cf-manifest
 
-run:
-  path: resource-tutorial/11_task_outputs_to_inputs/create_some_files.sh
+    run:
+      path: resource-tutorial/15_deploy_cloud_foundry_app/update-mainfest.sh
 
   - put: resource-deploy-web-app
     params:
