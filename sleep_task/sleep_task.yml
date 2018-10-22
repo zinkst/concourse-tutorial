@@ -12,5 +12,11 @@ params:
   SECONDS: ~
 
 run:
-  path: sleep
-  args: [ "${SECONDS}" ]
+  # path: sleep
+  # args: [ "${SECONDS}" ]
+  path: sh
+  args:
+  - -c
+  - |
+    echo "sleeping ${SECONDS} seconds"
+    sleep ${SECONDS}
