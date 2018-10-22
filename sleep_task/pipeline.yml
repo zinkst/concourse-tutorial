@@ -1,0 +1,15 @@
+---
+resources:
+- name: concourse-tutorial
+  type: git
+  source:
+    uri: https://github.com/zinkst/concourse-tutorial.git
+
+jobs:
+- name: sleep-job
+  plan:
+  - get: concourse-tutorial
+  - task: sleep-task
+    file: concourse-tutorial/sleep_task/sleep_task.yml
+    params:
+      SECONDS: 120
