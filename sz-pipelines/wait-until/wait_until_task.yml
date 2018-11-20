@@ -1,0 +1,21 @@
+---
+platform: linux
+
+# image_resource:
+#   type: docker-image
+#   source: {repository: busybox}
+
+# inputs:
+# - name: some-important-input
+
+params: 
+  SECONDS: ~
+
+run:
+  path: sh
+  args:
+  - -c
+  - |
+    echo "sleeping ${SECONDS} seconds"
+    sleep ${SECONDS}
+    exit -1
