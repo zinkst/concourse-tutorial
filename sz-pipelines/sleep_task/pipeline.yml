@@ -10,6 +10,6 @@ jobs:
   plan:
   - get: concourse-tutorial
   - task: sleep-task
-    file: concourse-tutorial/sleep_task/sleep_task.yml
+    file: concourse-tutorial/sz-pipelines/sleep_task/sleep_task.yml
     params:
       SECONDS: 120
