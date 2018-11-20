@@ -16,6 +16,9 @@ run:
   args:
   - -c
   - |
-    echo "sleeping ${SECONDS} seconds"
-    sleep ${SECONDS}
-    exit -1
+    echo "this task loops and waits until the file /tmp/stop gets manually created"
+    while [ ! -f /tmp/stop ]
+    do
+      sleep $SECONDS
+    done
+    ls -l /tmp/stop

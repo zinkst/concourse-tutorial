@@ -1,16 +1,16 @@
 ---
 resources:
-- name: bluemix-pipelines
-  type: git
-  check_every: 2m
-  source:
-    uri: git@github.ibm.com:concourse/bluemix-pipelines.git
-    private_key: ((bluemix-pipelines-private-key))
-    branch: master
+# - name: bluemix-pipelines
+#   type: git
+#   check_every: 2m
+#   source:
+#     uri: git@github.ibm.com:concourse/bluemix-pipelines.git
+#     private_key: ((bluemix-pipelines-private-key))
+#     branch: master
 - name: concourse-tutorial
   type: git
   source:
-    uri https://github.com/zinkst/concourse-tutorial.git
+    uri: https://github.com/zinkst/concourse-tutorial.git
 - name: pipeline-image
   source:
     password: ((private-registry-docker-password-read-only))
@@ -22,9 +22,11 @@ resources:
 jobs:
 - name: job-wait-until
   plan:
+  - get: pipeline-image
+  - get: concourse-tutorial
   - task: task-wait-until
     file: concourse-tutorial/sz-pipelines/wait-until/wait_until_task.yml
     image: pipeline-image
     params:
-      SECONDS: 120
+      SECONDS: 10
 
